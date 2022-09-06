@@ -1,465 +1,755 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
-<head>
-    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
-    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
-    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
-    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:v="urn:schemas-microsoft-com:vml"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+>
+  <head>
+    <meta charset="utf-8" />
+    <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width" />
+    <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting" />
+    <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title>
+    <!-- The title tag shows in email notifications, like Android 4.4. -->
 
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700"
+      rel="stylesheet"
+    />
 
     <!-- CSS Reset : BEGIN -->
     <style>
+      /* What it does: Remove spaces around the email design added by some email clients. */
+      /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+      html,
+      body {
+        margin: 0 auto !important;
+        padding: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+        background: #f1f1f1;
+      }
 
-        /* What it does: Remove spaces around the email design added by some email clients. */
-        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
-        html,
-body {
-    margin: 0 auto !important;
-    padding: 0 !important;
-    height: 100% !important;
-    width: 100% !important;
-    background: #f1f1f1;
-}
+      /* What it does: Stops email clients resizing small text. */
+      * {
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
 
-/* What it does: Stops email clients resizing small text. */
-* {
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-}
+      /* What it does: Centers email on Android 4.4 */
+      div[style*="margin: 16px 0"] {
+        margin: 0 !important;
+      }
 
-/* What it does: Centers email on Android 4.4 */
-div[style*="margin: 16px 0"] {
-    margin: 0 !important;
-}
+      /* What it does: Stops Outlook from adding extra spacing to tables. */
 
-/* What it does: Stops Outlook from adding extra spacing to tables. */
-table,
-td {
+      /* td {
     mso-table-lspace: 0pt !important;
     mso-table-rspace: 0pt !important;
-}
+} */
 
-/* What it does: Fixes webkit padding issue. */
-table {
-    border-spacing: 0 !important;
-    border-collapse: collapse !important;
-    table-layout: fixed !important;
-    margin: 0 auto !important;
-}
+      /* What it does: Fixes webkit padding issue. */
+      table {
+        border-spacing: 0 !important;
+        border-collapse: collapse !important;
+        table-layout: fixed !important;
+        margin: 0 auto !important;
+      }
 
-/* What it does: Uses a better rendering method when resizing images in IE. */
-img {
-    -ms-interpolation-mode:bicubic;
-}
+      /* What it does: Uses a better rendering method when resizing images in IE. */
+      img {
+        -ms-interpolation-mode: bicubic;
+      }
 
-/* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
-a {
-    text-decoration: none;
-}
+      /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+      a {
+        text-decoration: none;
+      }
 
-/* What it does: A work-around for email clients meddling in triggered links. */
-*[x-apple-data-detectors],  /* iOS */
+      /* What it does: A work-around for email clients meddling in triggered links. */
+      *[x-apple-data-detectors],  /* iOS */
 .unstyle-auto-detected-links *,
 .aBn {
-    border-bottom: 0 !important;
-    cursor: default !important;
-    color: inherit !important;
-    text-decoration: none !important;
-    font-size: inherit !important;
-    font-family: inherit !important;
-    font-weight: inherit !important;
-    line-height: inherit !important;
-}
+        border-bottom: 0 !important;
+        cursor: default !important;
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+      }
 
-/* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
-.a6S {
-    display: none !important;
-    opacity: 0.01 !important;
-}
+      /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+      .a6S {
+        display: none !important;
+        opacity: 0.01 !important;
+      }
 
-/* What it does: Prevents Gmail from changing the text color in conversation threads. */
-.im {
-    color: inherit !important;
-}
+      /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+      .im {
+        color: inherit !important;
+      }
 
-/* If the above doesn't work, add a .g-img class to any image in question. */
-img.g-img + div {
-    display: none !important;
-}
+      /* If the above doesn't work, add a .g-img class to any image in question. */
+      img.g-img + div {
+        display: none !important;
+      }
 
-/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
-/* Create one of these media queries for each additional viewport size you'd like to fix */
+      /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+      /* Create one of these media queries for each additional viewport size you'd like to fix */
 
-/* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
-@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
-    u ~ div .email-container {
-        min-width: 320px !important;
-    }
-}
-/* iPhone 6, 6S, 7, 8, and X */
-@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
-    u ~ div .email-container {
-        min-width: 375px !important;
-    }
-}
-/* iPhone 6+, 7+, and 8+ */
-@media only screen and (min-device-width: 414px) {
-    u ~ div .email-container {
-        min-width: 414px !important;
-    }
-}
+      /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+      @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+        u ~ div .email-container {
+          min-width: 320px !important;
+        }
+      }
+      /* iPhone 6, 6S, 7, 8, and X */
+      @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+        u ~ div .email-container {
+          min-width: 375px !important;
+        }
+      }
+      /* iPhone 6+, 7+, and 8+ */
+      @media only screen and (min-device-width: 414px) {
+        u ~ div .email-container {
+          min-width: 414px !important;
+        }
+      }
     </style>
 
     <!-- CSS Reset : END -->
 
     <!-- Progressive Enhancements : BEGIN -->
     <style>
+      .primary {
+        background: #17bebb;
+      }
+      .bg_white {
+        background: #ffffff;
+      }
+      .bg_light {
+        background: #f7fafa;
+      }
+      .bg_black {
+        background: #000000;
+      }
+      .bg_dark {
+        background: rgba(0, 0, 0, 0.8);
+      }
+      .email-section {
+        padding: 2.5em;
+      }
 
-	    .primary{
-	background: #17bebb;
-}
-.bg_white{
-	background: #ffffff;
-}
-.bg_light{
-	background: #f7fafa;
-}
-.bg_black{
-	background: #000000;
-}
-.bg_dark{
-	background: rgba(0,0,0,.8);
-}
-.email-section{
-	padding:2.5em;
-}
+      /*BUTTON*/
+      .btn {
+        padding: 10px 15px;
+        display: inline-block;
+      }
+      .btn.btn-primary {
+        border-radius: 5px;
+        background: #17bebb;
+        color: #ffffff;
+      }
+      .btn.btn-white {
+        border-radius: 5px;
+        background: #ffffff;
+        color: #000000;
+      }
+      .btn.btn-white-outline {
+        border-radius: 5px;
+        background: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+      }
+      .btn.btn-black-outline {
+        border-radius: 0px;
+        background: transparent;
+        border: 2px solid #000;
+        color: #000;
+        font-weight: 700;
+      }
+      .btn-custom {
+        color: rgba(0, 0, 0, 0.3);
+        text-decoration: underline;
+      }
 
-/*BUTTON*/
-.btn{
-	padding: 10px 15px;
-	display: inline-block;
-}
-.btn.btn-primary{
-	border-radius: 5px;
-	background: #17bebb;
-	color: #ffffff;
-}
-.btn.btn-white{
-	border-radius: 5px;
-	background: #ffffff;
-	color: #000000;
-}
-.btn.btn-white-outline{
-	border-radius: 5px;
-	background: transparent;
-	border: 1px solid #fff;
-	color: #fff;
-}
-.btn.btn-black-outline{
-	border-radius: 0px;
-	background: transparent;
-	border: 2px solid #000;
-	color: #000;
-	font-weight: 700;
-}
-.btn-custom{
-	color: rgba(0,0,0,.3);
-	text-decoration: underline;
-}
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Work Sans", sans-serif;
+        color: #000000;
+        margin-top: 0;
+        font-weight: 400;
+      }
 
-h1,h2,h3,h4,h5,h6{
-	font-family: 'Work Sans', sans-serif;
-	color: #000000;
-	margin-top: 0;
-	font-weight: 400;
-}
+      body {
+        font-family: "Work Sans", sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 1.8;
+        color: rgba(0, 0, 0, 0.4);
+      }
 
-body{
-	font-family: 'Work Sans', sans-serif;
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 1.8;
-	color: rgba(0,0,0,.4);
-}
+      a {
+        color: #17bebb;
+      }
 
-a{
-	color: #17bebb;
-}
+      /*LOGO*/
+      .logo img {
+        width: 100%;
+        height: auto;
+      }
+      .logo h1 {
+        margin: 0;
+      }
+      .logo h1 a {
+        color: #17bebb;
+        font-size: 24px;
+        font-weight: 700;
+        font-family: "Work Sans", sans-serif;
+      }
+      #bold-head {
+        color: #17bebb;
+        font-size: 24px;
+        font-weight: 700;
+        font-family: "Work Sans", sans-serif;
+      }
 
-table{
-}
-/*LOGO*/
-.logo img{
-	width: 100%;
-	height: auto;
-}
-.logo h1{
-	margin: 0;
-	
-}
-.logo h1 a{
-	color: #17bebb;
-	font-size: 24px;
-	font-weight: 700;
-	font-family: 'Work Sans', sans-serif;
-}
-#bold-head{
-	color: #17bebb;
-	font-size: 24px;
-	font-weight: 700;
-	font-family: 'Work Sans', sans-serif;
-}
+      /*HERO*/
+      .hero {
+        position: relative;
+        z-index: 0;
+      }
 
-/*HERO*/
-.hero{
-	position: relative;
-	z-index: 0;
-}
+      .hero .text {
+        color: rgba(0, 0, 0, 0.3);
+      }
+      .hero .text h2 {
+        color: #000;
+        font-size: 34px;
+        margin-bottom: 15px;
+        font-weight: 300;
+        line-height: 1.2;
+      }
+      .hero .text h3 {
+        font-size: 24px;
+        font-weight: 200;
+      }
+      .hero .text h2 span {
+        font-weight: 600;
+        color: #000;
+      }
 
-.hero .text{
-	color: rgba(0,0,0,.3);
-}
-.hero .text h2{
-	color: #000;
-	font-size: 34px;
-	margin-bottom: 15px;
-	font-weight: 300;
-	line-height: 1.2;
-}
-.hero .text h3{
-	font-size: 24px;
-	font-weight: 200;
-}
-.hero .text h2 span{
-	font-weight: 600;
-	color: #000;
-}
+      /*PRODUCT*/
+      .product-entry {
+        display: block;
+        position: relative;
+        float: left;
+        padding-top: 20px;
+      }
+      .product-entry .text {
+        width: calc(100% - 125px);
+        padding-left: 20px;
+      }
+      .product-entry .text h3 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .product-entry .text p {
+        margin-top: 0;
+      }
+      .product-entry img,
+      .product-entry .text {
+        float: left;
+      }
 
+      ul.social {
+        padding: 0;
+      }
+      ul.social li {
+        display: inline-block;
+        margin-right: 10px;
+      }
 
-/*PRODUCT*/
-.product-entry{
-	display: block;
-	position: relative;
-	float: left;
-	padding-top: 20px;
-}
-.product-entry .text{
-	width: calc(100% - 125px);
-	padding-left: 20px;
-}
-.product-entry .text h3{
-	margin-bottom: 0;
-	padding-bottom: 0;
-}
-.product-entry .text p{
-	margin-top: 0;
-}
-.product-entry img, .product-entry .text{
-	float: left;
-}
+      /*FOOTER*/
 
-ul.social{
-	padding: 0;
-}
-ul.social li{
-	display: inline-block;
-	margin-right: 10px;
-}
+      .footer {
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.5);
+      }
+      .footer .heading {
+        color: #000;
+        font-size: 20px;
+      }
+      .footer ul {
+        margin: 0;
+        padding: 0;
+      }
+      .footer ul li {
+        list-style: none;
+        margin-bottom: 10px;
+      }
+      .footer ul li a {
+        color: rgba(0, 0, 0, 1);
+      }
 
-/*FOOTER*/
-
-.footer{
-	border-top: 1px solid rgba(0,0,0,.05);
-	color: rgba(0,0,0,.5);
-}
-.footer .heading{
-	color: #000;
-	font-size: 20px;
-}
-.footer ul{
-	margin: 0;
-	padding: 0;
-}
-.footer ul li{
-	list-style: none;
-	margin-bottom: 10px;
-}
-.footer ul li a{
-	color: rgba(0,0,0,1);
-}
-
-
-@media screen and (max-width: 500px) {
-
-
-}
-
-
+      @media screen and (max-width: 500px) {
+      }
     </style>
+  </head>
 
+  <body
+    width="100%"
+    style="margin: 0; padding: 0 !important; background-color: #f1f1f1"
+  >
 
-</head>
-
-<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f1f1f1;">
-	<center style="width: 100%; background-color: #f1f1f1;">
-    <div style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
-      &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
-    </div>
-    <div style="max-width: 600px; margin: 0 auto;" class="email-container">
-    	<!-- BEGIN BODY -->
-      <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
-      	<tr>
-          <td valign="top" class="bg_white" style="padding: 1em 2.5em 0 2.5em;">
-          	<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-          		<tr>
-          			<td class="logo" style="text-align: left;">
-			            <h1><a href="https://thelinkcommunication.com/"> <img src="https://i.postimg.cc/ZKGK3B0p/logo-ad435929f1061d153a15.jpg" alt="Logo"> </a></h1>
-			          </td>
-          		</tr>
-          	</table>
-          </td>
-	      </tr><!-- end tr -->
-				<tr>
-          <td valign="middle" class="hero bg_white" style="padding: 2em 0 2em 0;">
-            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-            	<tr>
-            		<td style="padding: 0 2.5em; text-align: left;">
-            			<div class="text">
-            				<h2 id="bold-head"></h2>
-            				<h3>Browse more amazing deals, updates, while our team replies your message in a moment</h3>
-            			</div>
-            		</td>
-            	</tr>
-            </table>
-          </td>
-	      </tr><!-- end tr -->
-	      <tr>
-	      	<table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-	      		<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					    <th width="80%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
-					    <th width="20%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
-					  </tr>
-					  <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
-					  		<div class="product-entry">
-					  			<img src="https://thelinkcommunication.com/static/media/Sharp_R2_Compact_2.d1ea33524aad1ae0c2d1.jpg" alt="" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-					  			<div class="text">
-					  				<h3>Sharp Aquos R2 Compact</h3>
-					  				<span>Waterproof</span>
-					  				<p> Nothing is impossible, the word itself says "I'm possible"!."</p>
-					  			</div>
-					  		</div>
-					  	</td>
-					  	<td valign="middle" width="20%" style="text-align:left; padding: 0 2.5em;">
-					  		<span class="price" style="color: #000; font-size: 20px;">300K</span>
-					  	</td>
-					  </tr>
-					  <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
-					  		<div class="product-entry">
-					  			<img src="https://thelinkcommunication.com/static/media/ARROWS_F-01K_main.b4722a118bf58fd0a4f5.jpg" alt="" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-					  			<div class="text">
-					  				<h3>Arrows Kaliba F-01K</h3>
-					  				<span>Waterproof</span>
-					  				<p>Even if you're on the right track, you'll get run over if you just sit there.</p>
-					  			</div>
-					  		</div>
-					  	</td>
-					  	<td valign="middle" width="20%" style="text-align:left; padding: 0 2.5em;">
-					  		<span class="price" style="color: #000; font-size: 20px;">250K</span>
-					  	</td>
-					  </tr>
-					  <tr>
-					  	<td valign="middle" style="text-align:left; padding: 1em 2.5em;">
-					  		<p><a href="https://thelinkcommunication.com/brand" class="btn btn-primary">See more.</a></p>
-					  	</td>
-					  </tr>
-	      	</table>
-	      </tr><!-- end tr -->
-      <!-- 1 Column Text + Button : END -->
-      </table>
-      <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
-      	<tr>
-          <td valign="middle" class="bg_light footer email-section">
-            <table>
-            	<tr>
-                <td valign="top" width="33.333%" style="padding-top: 20px;">
-                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                    <tr>
-                      <td style="text-align: left; padding-right: 10px;">
-                      	<h3 class="heading">About</h3>
-                      	<p>Best phone dealers since 2002 operating from Namirembe Rd Next to Centenary Bank. Lions Shopping Mall Shop no. 1</p>
-                      </td>
-                    </tr>
-                  </table>
+    <center style="width: 100%; background-color: #f1f1f1">
+      <div
+        style="
+          display: none;
+          font-size: 1px;
+          max-height: 0px;
+          max-width: 0px;
+          opacity: 0;
+          overflow: hidden;
+          font-family: sans-serif;
+        "
+      >
+        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+      </div>
+      <div style="max-width: 600px; margin: 0 auto" class="email-container">
+        <!-- BEGIN BODY -->
+        <table
+          align="center"
+          role="presentation"
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          width="100%"
+          style="margin: auto"
+        >
+          <tr>
+            <td
+              valign="top"
+              class="bg_white"
+              style="padding: 1em 2.5em 0 2.5em"
+            >
+              <table
+                role="presentation"
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                width="100%"
+              >
+                <tr>
+                  <td class="logo" style="text-align: left">
+                    <h1>
+                      <a href="https://thelinkcommunication.com/">
+                        <img
+                          src="https://i.postimg.cc/ZKGK3B0p/logo-ad435929f1061d153a15.jpg"
+                          alt="Logo"
+                        />
+                      </a>
+                    </h1>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- end tr -->
+          <tr>
+            <td
+              valign="middle"
+              class="hero bg_white"
+              style="padding: 2em 0 2em 0"
+            >
+              <table
+                role="presentation"
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                width="100%"
+              >
+                <tr>
+                  <td style="padding: 0 2.5em; text-align: left">
+                    <div class="text">
+                      <h2 id="bold-head">
+                        Greetings to you, thank you for your messsage.
+                      </h2>
+                      <h3 style="font-weight: 100">
+                        Browse more amazing deals, updates, while our team
+                        replies your message in a moment
+                      </h3>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- end tr -->
+          <tr>
+            <table
+              class="bg_white"
+              role="presentation"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+            >
+              <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0.05)">
+                <th
+                  width="100%"
+                  style="
+                    text-align: left;
+                    padding: 0 2.5em;
+                    color: #000;
+                    padding-bottom: 16px;
+                  "
+                >
+                  Item
+                </th>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0.05)">
+                <td
+                  valign="middle"
+                  width="100%"
+                  style="text-align: left; padding: 0 2.5em"
+                >
+                  <div class="product-entry">
+                    <img
+                      src="https://thelinkcommunication.com/static/media/Sharp_R2_Compact_2.d1ea33524aad1ae0c2d1.jpg"
+                      alt="Phone Image"
+                      style="
+                        width: 100px;
+                        max-width: 600px;
+                        height: auto;
+                        margin-bottom: 20px;
+                        display: block;
+                      "
+                      id="firstPhoneImg"
+                    />
+                    <div class="text">
+                      <h3 id="firstPhoneHead">Sharp Aquos R2</h3>
+                      <span>Waterproof</span>
+                      <p id="firstPhoneQuote" style="color: gray; opacity: 0.7">
+                        Ask and it shall be given to you, knock and it will be
+                        opened unto thee, Seek and you'll find.
+                      </p>
+                    </div>
+                  </div>
                 </td>
-                <td valign="top" width="33.333%" style="padding-top: 20px;">
-                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                    <tr>
-                      <td style="text-align: left; padding-left: 5px; padding-right: 5px;">
-                      	<h3 class="heading">Contact Info</h3>
-                      	<ul>
-					                <li><span class="text">Lions Shopping Arcade, LSC 01, Namirembe Rd. Next to Centenary Bank Kampala, Uganda.</span></li>
-					                <li><span class="text"> +256 757 837184 </span></a></li>
-					                <li><span class="text"> +256 775 509866  </span></a></li>
-					              </ul>
-                      </td>
-                    </tr>
-                  </table>
+                <td
+                  valign="middle"
+                  width="20%"
+                  style="text-align: left; padding: 0 2.5em"
+                >
+                  <span
+                    class="price"
+                    id="firstPhonePrice"
+                    style="color: #000; font-size: 16px"
+                    >300K</span
+                  >
                 </td>
-                <td valign="top" width="33.333%" style="padding-top: 20px;">
-                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                    <tr>
-                      <td style="text-align: left; padding-left: 10px;">
-                      	<h3 class="heading">Useful Links</h3>
-                      	<ul>
-					                <li><a href="thelinkcommunication.com">Home</a></li>
-					                <li><a href="https://thelinkcommunication.com/brand">Brand</a></li>
-					                <li><a href="https://thelinkcommunication.com/special">Specials</a></li>
-					                <li><a href="https://thelinkcommunication.com/about">About Us</a></li>
-					              </ul>
-                      </td>
-                    </tr>
-                  </table>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0.05)">
+                <td
+                  valign="middle"
+                  width="80%"
+                  style="text-align: left; padding: 0 2.5em"
+                >
+                  <div class="product-entry">
+                    <img
+                      src="https://thelinkcommunication.com/static/media/Samsung_Note_8_1.3d803d1e0fa6e9d3580c.jpg"
+                      alt="Phone Image"
+                      style="
+                        width: 100px;
+                        max-width: 600px;
+                        height: auto;
+                        margin-bottom: 20px;
+                        display: block;
+                      "
+                      id="secondPhoneImg"
+                    />
+                    <div class="text">
+                      <h3 id="secondPhoneHead">Samsung Note 8</h3>
+                      <span>New</span>
+                      <p
+                        id="secondPhoneQuote"
+                        style="color: gray; opacity: 0.7"
+                      >
+                        Never go to bed mad. Stay up and fight.
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  valign="middle"
+                  width="20%"
+                  style="text-align: left; padding: 0 2.5em"
+                >
+                  <span
+                    class="price"
+                    id="secondPhonePrice"
+                    style="color: #000; font-size: 10px"
+                    >650K</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td
+                  valign="middle"
+                  style="text-align: left; padding: 1em 2.5em"
+                >
+                  <p>
+                    <a
+                      href="https://thelinkcommunication.com/brand"
+                      class="btn btn-primary"
+                      >See more.</a
+                    >
+                  </p>
                 </td>
               </tr>
             </table>
-          </td>
-        </tr><!-- end: tr -->
-        <tr>
-          <td class="bg_white" style="text-align: center;">
-          	<p>The Link Communications Center <a href="#" style="color: rgba(0,0,0,.8);"> © 2022 All Rights Reserved. </a></p>
-          </td>
-        </tr>
-      </table>
+          </tr>
+          <!-- end tr -->
+          <!-- 1 Column Text + Button : END -->
+        </table>
+        <table
+          align="center"
+          role="presentation"
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          width="100%"
+          style="margin: auto"
+        >
+          <tr>
+            <td valign="middle" class="bg_light footer email-section">
+              <table>
+                <tr>
+                  <td valign="top" width="33.333%" style="padding-top: 20px">
+                    <table
+                      role="presentation"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                      width="100%"
+                    >
+                      <tr>
+                        <td style="text-align: left; padding-right: 10px">
+                          <h3 class="heading">About</h3>
+                          <p>
+                            Best phone dealers since 2002 operating from
+                            Namirembe Rd Next to Centenary Bank. Lions Shopping
+                            Mall Shop no. 1
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td valign="top" width="33.333%" style="padding-top: 20px">
+                    <table
+                      role="presentation"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                      width="100%"
+                    >
+                      <tr>
+                        <td
+                          style="
+                            text-align: left;
+                            padding-left: 5px;
+                            padding-right: 5px;
+                          "
+                        >
+                          <h3 class="heading">Contact Info</h3>
+                          <ul>
+                            <li>
+                              <span class="text"
+                                >Lions Shopping Arcade, LSC 01, Namirembe Rd.
+                                Next to Centenary Bank Kampala, Uganda.</span
+                              >
+                            </li>
+                            <li>
+                              <a><span class="text"> +256 757 837184 </span></a>
+                            </li>
+                            <li>
+                              <a><span class="text"> +256 775 509866 </span></a>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td valign="top" width="33.333%" style="padding-top: 20px">
+                    <table
+                      role="presentation"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                      width="100%"
+                    >
+                      <tr>
+                        <td style="text-align: left; padding-left: 10px">
+                          <h3 class="heading">Useful Links</h3>
+                          <ul>
+                            <li><a href="thelinkcommunication.com">Home</a></li>
+                            <li>
+                              <a href="https://thelinkcommunication.com/brand"
+                                >Brand</a
+                              >
+                            </li>
+                            <li>
+                              <a href="https://thelinkcommunication.com/special"
+                                >Specials</a
+                              >
+                            </li>
+                            <li>
+                              <a href="https://thelinkcommunication.com/about"
+                                >About Us</a
+                              >
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- end: tr -->
+          <tr>
+            <td class="bg_white" style="text-align: center">
+              <p>
+                The Link Communications Center
+                <a href="#" style="color: rgba(0, 0, 0, 0.8)">
+                  © 2022 All Rights Reserved.
+                </a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </center>
+    <script>
+      let date = new Date();
+      var time = new Date();
+      var timeMessage = "";
+      if (time.getHours() < 12) {
+        timeMessage = " morning";
+      } else if (time.getHours() < 16) {
+        timeMessage = " afternoon";
+      } else if (time.getHours() < 21) {
+        timeMessage = " evening";
+      } else {
+        timeMessage = " night";
+      }
 
-    </div>
-  </center>
-</body>
-<script>
+      var heading = document.getElementById("bold-head");
+      heading.innerHTML = `Good ${timeMessage} to you, thank you for your messsage.`;
 
-	let date = new Date();
-  var time = new Date();
-  var timeMessage = "";
-  if (time.getHours() < 12) {
-    timeMessage = " morning";
-  } else if (time.getHours() < 16) {
-    timeMessage = " afternoon";
-  } else if (time.getHours() < 21) {
-    timeMessage = " evening";
-  } else {
-    timeMessage = " night";
-  }
+      let firstPhones = [
+        {
+          img: "https://thelinkcommunication.com/static/media/Sharp_R2_Compact_2.d1ea33524aad1ae0c2d1.jpg",
+          name: "Sharp Aquos R2",
+          price: "300K",
+          quote:
+            "Ask and it shall be given to you, knock and it will be opened unto thee, Seek and you'll find.",
+        },
+        {
+          img: "data:image/jpeg;base64,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",
+          name: "Kampeyini KYV42",
+          price: "170K",
+          quote:
+            "Ever Tried. Ever failed. No matter. Try again. Fail again. Fail better.",
+        },
+        {
+          img: "https://thelinkcommunication.com/static/media/Kyocera_basio_2_main(copy).e3b6169e72aaaeb5df1b.jpg",
+          name: "Basio KYV42",
+          price: "150K",
+          quote: "Someday is not a day of the week.",
+        },
+        {
+          img: "https://thelinkcommunication.com/static/media/ARROWS_F-41A_1.45956d23c42468f1182f.jpg",
+          name: "Arrows F-02L",
+          price: "300K",
+          quote:
+            "I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times. ",
+        },
+        {
+          img: "https://thelinkcommunication.com/static/media/Sony_XZ_Compact_2.1ce7b4ee7494a87e73b8.jpg",
+          name: "Sony X Compact",
+          price: "250K",
+          quote: "Quality is not an act, it is a habit. ",
+        },
+      ];
 
-  var heading = document.getElementById('bold-head');
-  heading.innerHTML = `Good ${timeMessage} Ronald, thank you for your messsage.`;
+      let secondPhones = [
+        {
+          img: "https://thelinkcommunication.com/static/media/Samsung_Note_8_1.3d803d1e0fa6e9d3580c.jpg",
+          name: "Samsung Note 8",
+          price: "650K",
+          quote: " Never go to bed mad. Stay up and fight. ",
+        },
+        {
+          img: "https://thelinkcommunication.com/static/media/iPhone_6+.a0b610ae20485f3ce686.jpg",
+          name: "iPhone 6 Plus",
+          price: "600K",
+          quote: "Once we accept our limits, we go beyond them.",
+        },
+        {
+          img: "https://thelinkcommunication.com/static/media/Samsung_S6_main.d3b01a88dd60b6242ccb.jpg",
+          name: "Samsung S6",
+          price: "300K",
+          quote: "The harder I work, the luckier I get.",
+        },
+        {
+          img: "https://thelinkcommunication.com/static/media/sony_xz3_main_home.d9fe371c3a355288c07f.jpg",
+          name: "Sony Xperia XZ3",
+          price: "800K",
+          quote: " We first make our habits, then our habits make us.",
+        },
+        {
+          img: "https://thelinkcommunication.com/static/media/google_pixel_new_2.775fb725086be82e3e20.jpg",
+          name: "Google Pixel 4a",
+          price: "550K",
+          quote: " Light tomorrow with today.",
+        },
+      ];
 
-  let phones = [{name:"Sharp Aquos R2", price:"300K",},
-  {name:"Sharp Aquos R2", price:"300K",},
-  {name:"Sharp Aquos R2", price:"300K",},
-]
+      let phonesLength = firstPhones.length;
+      let int = Math.floor(Math.random() * phonesLength);
+      let firstName = firstPhones[int].name;
+      let firstPrice = firstPhones[int].price;
+      let firstQuote = firstPhones[int].quote;
+      let firstPhoneImg = document.getElementById("firstPhoneImg");
+      firstPhoneImg.src = `${firstPhones[int].img}`;
 
-</script>
+      let secondName = secondPhones[int].name;
+      let secondPrice = secondPhones[int].price;
+      let secondQuote = secondPhones[int].quote;
+      let secondPhoneImg = document.getElementById("secondPhoneImg");
+      secondPhoneImg.src = `${secondPhones[int].img}`;
+
+      document.getElementById("firstPhoneHead").innerHTML = firstName;
+      document.getElementById("firstPhoneQuote").innerHTML = firstQuote;
+      document.getElementById("firstPhonePrice").innerHTML = firstPrice;
+
+      document.getElementById("secondPhoneHead").innerHTML = secondName;
+      document.getElementById("secondPhoneQuote").innerHTML = secondQuote;
+      document.getElementById("secondPhonePrice").innerHTML = secondPrice;
+    </script>
+  </body>
 </html>
