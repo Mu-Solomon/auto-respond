@@ -22,6 +22,11 @@
       rel="stylesheet"
     />
 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200&display=swap"
+      rel="stylesheet"
+    />
     <!-- CSS Reset : BEGIN -->
     <style>
       /* What it does: Remove spaces around the email design added by some email clients. */
@@ -305,6 +310,10 @@
 
       @media screen and (max-width: 500px) {
       }
+      #firstPhoneHead,
+      #secondPhoneHead {
+        color: #0198dd;
+      }
     </style>
   </head>
 
@@ -312,7 +321,6 @@
     width="100%"
     style="margin: 0; padding: 0 !important; background-color: #f1f1f1"
   >
-
     <center style="width: 100%; background-color: #f1f1f1">
       <div
         style="
@@ -386,7 +394,13 @@
                       <h2 id="bold-head">
                         Greetings to you, thank you for your messsage.
                       </h2>
-                      <h3 style="font-weight: 100">
+                      <h3
+                        style="
+                          font-family: 'Raleway', Courier, monospace;
+                          font-weight: 100;
+                          color: slategray;
+                        "
+                      >
                         Browse more amazing deals, updates, while our team
                         replies your message in a moment
                       </h3>
@@ -427,7 +441,7 @@
                 >
                   <div class="product-entry">
                     <img
-                      src="https://thelinkcommunication.com/static/media/Sharp_R2_Compact_2.d1ea33524aad1ae0c2d1.jpg"
+                      src="https://thelinkcommunication.com/static/media/Kyocera_basio_2_main(copy).e3b6169e72aaaeb5df1b.jpg"
                       alt="Phone Image"
                       style="
                         width: 100px;
@@ -439,27 +453,25 @@
                       id="firstPhoneImg"
                     />
                     <div class="text">
-                      <h3 id="firstPhoneHead">Sharp Aquos R2</h3>
-                      <span>Waterproof</span>
+                      <h3 id="firstPhoneHead">Basio KYV42</h3>
+                      <span style="color: gray; opacity: 0.7">Waterproof</span>
                       <p id="firstPhoneQuote" style="color: gray; opacity: 0.7">
-                        Ask and it shall be given to you, knock and it will be
-                        opened unto thee, Seek and you'll find.
+                        Someday is not a day of the week.
                       </p>
+                      <span
+                        class="price"
+                        id="firstPhonePrice"
+                        style="color: #000; font-size: 16px"
+                        >Ugx 150,000</span
+                      >
                     </div>
                   </div>
                 </td>
-                <td
+                <!-- <td
                   valign="middle"
                   width="20%"
                   style="text-align: left; padding: 0 2.5em"
-                >
-                  <span
-                    class="price"
-                    id="firstPhonePrice"
-                    style="color: #000; font-size: 16px"
-                    >300K</span
-                  >
-                </td>
+                ></td> -->
               </tr>
               <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0.05)">
                 <td
@@ -469,7 +481,7 @@
                 >
                   <div class="product-entry">
                     <img
-                      src="https://thelinkcommunication.com/static/media/Samsung_Note_8_1.3d803d1e0fa6e9d3580c.jpg"
+                      src="https://thelinkcommunication.com/static/media/iPhone_6+.a0b610ae20485f3ce686.jpg"
                       alt="Phone Image"
                       style="
                         width: 100px;
@@ -481,29 +493,28 @@
                       id="secondPhoneImg"
                     />
                     <div class="text">
-                      <h3 id="secondPhoneHead">Samsung Note 8</h3>
-                      <span>New</span>
+                      <h3 id="secondPhoneHead">iPhone 6 Plus</h3>
+                      <span style="color: gray; opacity: 0.7">New</span>
                       <p
                         id="secondPhoneQuote"
                         style="color: gray; opacity: 0.7"
                       >
-                        Never go to bed mad. Stay up and fight.
+                        Once we accept our limits, we go beyond them.
                       </p>
+                      <span
+                        class="price"
+                        id="secondPhonePrice"
+                        style="color: #000; font-size: 16px"
+                        >Ugx 150,000</span
+                      >
                     </div>
                   </div>
                 </td>
-                <td
+                <!-- <td
                   valign="middle"
                   width="20%"
                   style="text-align: left; padding: 0 2.5em"
-                >
-                  <span
-                    class="price"
-                    id="secondPhonePrice"
-                    style="color: #000; font-size: 10px"
-                    >650K</span
-                  >
-                </td>
+                ></td> -->
               </tr>
               <tr>
                 <td
@@ -643,7 +654,7 @@
         </table>
       </div>
     </center>
-    <script>
+    <!-- <script>
       let date = new Date();
       var time = new Date();
       var timeMessage = "";
@@ -750,6 +761,6 @@
       document.getElementById("secondPhoneHead").innerHTML = secondName;
       document.getElementById("secondPhoneQuote").innerHTML = secondQuote;
       document.getElementById("secondPhonePrice").innerHTML = secondPrice;
-    </script>
+    </script> -->
   </body>
 </html>
